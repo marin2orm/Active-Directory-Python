@@ -2,10 +2,10 @@ import requests
 import json
 import subprocess
 
-# URL de l'API
+# lIEN de l'API
 myUrl = "http://srv-peda.iut-acy.local/hoarauju/sae204/users/apiUsers.php?id_sae=2&id_grp=a2&login_usmb=desormem"
 
-# Fonction pour récupérer les données de l'API
+# Fonction pour recuperer les données de l'API
 def getData(url):
     response = requests.get(url)
     if response.status_code == 200:
@@ -23,7 +23,12 @@ def statUsers(data):
     num_users = len(data)
     groups = set(user['groupe'] for user in data)
     num_groups = len(groups)
-    domain = data[0]['email'].split('@')[-1] if num_users > 0 else "Aucun utilisateur trouvé"
+    
+    if num_users > 0:
+        domain = data[0]['email'].split('@')[-1]
+    else:
+        domain = "Aucun utilisateur trouvé"
+    
     return num_users, num_groups, domain
 
 # Fonction pour exécuter une commande PowerShell depuis Python
