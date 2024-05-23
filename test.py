@@ -13,7 +13,7 @@ def getData(url):
     else:
         response.raise_for_status()
 
-# Fonction pour afficher les utilisateurs
+# Afficher les utilisateurs
 def viewUsers(data):
     for user in data:
         print(f"Nom: {user['nom']}, Prenom: {user['prenom']}")
